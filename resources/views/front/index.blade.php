@@ -35,7 +35,7 @@
                         <div class="p-3" style="max-width: 900px;"><br><br>
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">The International Collaboration of</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">UCA & DHBW</h1>
-                            <a href="/about" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">About Us</a>
+                            <a href="/about" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">About Collaboration</a>
                             <a href="/news" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">News</a>
                         </div>
                          
@@ -47,7 +47,7 @@
                         <div class="p-3" style="max-width: 900px;"><br><br>
                             <h5 class="text-white text-uppercase mb-3 animated slideInDown">The International Collaboration of</h5>
                             <h1 class="display-1 text-white mb-md-4 animated zoomIn">UCA & DHBW</h1>
-                            <a href="/about" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">About Us</a>
+                            <a href="/about" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">About Collaboration</a>
                             <a href="/news" class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight">News</a>
                         </div>
                     </div>

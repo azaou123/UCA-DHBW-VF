@@ -126,6 +126,8 @@ Route::group(['middleware' => 'admin.auth'], function () {
     // Route::get('/projects', [AdminController::class, 'projects'])->name('projects');
     // Route::get('/fablabs', [AdminController::class, 'fablabs'])->name('fablabs');
     // Route::get('/programs', [AdminController::class, 'programs'])->name('programs');
+    Route::get('/settings', [AdminController::class, 'settings'])->name('settings'); // New route for static texts management
+
 
 
     // Teacher Part 

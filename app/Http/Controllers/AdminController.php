@@ -14,6 +14,8 @@ use App\Models\Fablab;
 use App\Models\Program;
 use App\Models\Internship;
 use App\Models\News;
+use App\Models\Settings;
+
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -110,5 +112,11 @@ class AdminController extends Controller
     {
         $news = News::all();
         return view('back.news',compact('news','news'));
+    }
+
+    public function settings()
+    {
+        $settings = Settings::all();
+        return view('back.settings', compact('settings'));
     }
 }
