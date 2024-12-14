@@ -88,6 +88,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'date_end' => 'required|date',
             'company' => 'required|string|max:255',
             'partner_id' => 'nullable|exists:partners,id',
+            'type' => 'required|in:on-site,online', // Validation pour 'type'
+
         ]);
 
         Internship::create([
@@ -98,6 +100,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'date_end' => $request->input('date_end'),
             'company' => $request->input('company'),
             'partner_id' => $request->input('partner_id'),
+            'type' => $request->input('type'), // Ajout du champ
+
         ]);
 
         return redirect()->back()->with('success', 'Internship added successfully');
@@ -119,6 +123,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'date_end' => 'required|date',
             'company' => 'required|string|max:255',
             'partner_id' => 'nullable|exists:partners,id',
+            'type' => 'required|in:on-site,online', // Validation pour 'type'
+
         ]);
 
         $internship->update([
@@ -129,6 +135,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'date_end' => $request->input('date_end'),
             'company' => $request->input('company'),
             'partner_id' => $request->input('partner_id'),
+            'type' => $request->input('type'), // Mise à jour du champ
+
         ]);
 
         return redirect()->back()->with('success', 'Internship updated successfully');
@@ -175,5 +183,6 @@ public function removeSupervisor($internshipId, $supervisorId)
         // Retourner la vue avec les données
         return view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year', 'type'));
     }
+    
 
 }
