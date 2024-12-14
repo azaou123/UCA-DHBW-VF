@@ -135,33 +135,45 @@ public function removeSupervisor($internshipId, $supervisorId)
     }
     public function filterInternships(Request $request)
     {
-        // Get all workshops
+        // Get all internships
         $internships = Internship::all();
-
+    
         // Get unique years from both date_start and date_end columns
         $yearsStart = Internship::selectRaw('YEAR(date_start) as year')->distinct()->pluck('year');
         $yearsEnd = Internship::selectRaw('YEAR(date_end) as year')->distinct()->pluck('year');
-
+    
         // Merge and sort the unique years
         $years = $yearsStart->merge($yearsEnd)->unique()->sort();
-
-        // If the year parameter is provided, filter workshops
-        $filteredInternships = null;
+    
+        // Get filter inputs
         $year = $request->input('year');
+        $type = $request->input('type'); // Nouveau paramètre de filtre par type
+    
+        // Créer une requête filtrée
+        $query = Internship::query();
+    
+        // Appliquer le filtre par année
         if ($year) {
-            $filteredInternships = Internship::whereYear('date_start', $year)
-                ->orWhereYear('date_end', $year)
-                ->paginate(3);
+            $query->whereYear('date_start', $year)
+                  ->orWhereYear('date_end', $year);
         }
-
-        // Return a JSON response for AJAX requests
+    
+        // Appliquer le filtre par type
+        if ($type) {
+            $query->where('type', $type); // 'type' est la colonne de la base de données (valeurs : 'online', 'on_site')
+        }
+    
+        // Récupérer les résultats paginés
+        $filteredInternships = $query->paginate(3);
+    
+        // Retourner une réponse JSON pour les requêtes AJAX
         if ($request->ajax()) {
-            $html = view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year'))->render();
+            $html = view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year', 'type'))->render();
             return response()->json(['html' => $html]);
         }
-
-        // Pass data to the view
-        return view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year'));
+    
+        // Retourner la vue avec les données
+        return view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year', 'type'));
     }
 
 }
