@@ -11,6 +11,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FablabController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\InternshipController;
+use App\Http\Controllers\SettingsController;
 
 
 use App\Http\Controllers\LogController;
@@ -126,7 +127,6 @@ Route::group(['middleware' => 'admin.auth'], function () {
     // Route::get('/projects', [AdminController::class, 'projects'])->name('projects');
     // Route::get('/fablabs', [AdminController::class, 'fablabs'])->name('fablabs');
     // Route::get('/programs', [AdminController::class, 'programs'])->name('programs');
-    Route::get('/settings', [AdminController::class, 'settings'])->name('settings'); // New route for static texts management
 
 
 
@@ -192,6 +192,15 @@ Route::group(['middleware' => 'admin.auth'], function () {
     // Route::delete('/programs-deleteRoute/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
     // Route::post('programs.add', [ProgramController::class, 'store'])->name('programs.add');
     // Route::put('/programs/update/{program}', [ProgramController::class, 'update'])->name('programs.update');
+
+    // settings 
+    Route::get('/settings', [AdminController::class, 'settings'])->name('settings');  // This is for showing the settings page.
+    Route::post( '/settings/add', [SettingsController::class, 'store'])->name('settings.add'); // The route for storing settings.
+    Route::get( '/settings/{setting}/edit', [SettingsController::class, 'edit'])->name('settings.edit');
+    Route::put('/settings/update/{setting}', action: [SettingsController::class, 'update'])->name('settings.update');
+    Route::delete('/settings/{setting}', [SettingsController::class, 'destroy'])->name('settings.destroy');
+    Route::get('/setting/{key}', [SettingsController::class, 'getSettingByKey']);
+
 });
 
 
