@@ -38,7 +38,7 @@
                         <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
                         <h1 class="mb-0">Our Collaborative Journey:<br>Cadi Ayyad University & DHBW</h1>
                     </div>
-                    <p class="mb-4">Welcome to Cadi Ayyad University (UCA), in collaboration with Baden-Württemberg Cooperative State University (DHBW). This synergistic partnership exemplifies our commitment to innovation, academic excellence, and global collaboration. Developed by the talented students of Cadi Ayyad University, this website is a testament to our dedication to experiential learning and cross-cultural collaboration. With a rich tapestry of international partnerships, including DHBW, we aim to be a catalyst for positive change, nurturing talents, and shaping the future of education. Join us in exploring our journey, values, and the collective pursuit of knowledge that defines who we are. Together, with DHBW, we make a lasting impact on a global scale.</p>
+                    <p class="mb-4">{{ $settings['about_collaboration_description'] }}</p>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">

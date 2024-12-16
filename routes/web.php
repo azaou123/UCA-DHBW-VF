@@ -196,7 +196,6 @@ Route::group(['middleware' => 'admin.auth'], function () {
     // settings 
     Route::get('/settings', [AdminController::class, 'settings'])->name('settings');  // This is for showing the settings page.
     Route::post( '/settings/add', [SettingsController::class, 'store'])->name('settings.add'); // The route for storing settings.
-    Route::get( '/settings/{setting}/edit', [SettingsController::class, 'edit'])->name('settings.edit');
     Route::put('/settings/update/{setting}', action: [SettingsController::class, 'update'])->name('settings.update');
     Route::delete('/settings/{setting}', [SettingsController::class, 'destroy'])->name('settings.destroy');
     Route::get('/setting/{key}', [SettingsController::class, 'getSettingByKey']);
