@@ -72,6 +72,8 @@ Route::get('/news/{slug}', [NewsController::class, 'showNews'])->name('front.new
 
 //Partners Controller : Front Office
 Route::get('/partners', [PartnerController::class, 'showPartners'])->name('front.partners.partners');
+Route::get('/partners/{id}', [PartnerController::class, 'showPartner'])->name('front.partners.partnerDetails');
+
 
 //Achievements Controller : Front Office
 Route::get('/achievements', [FablabController::class, 'showFablabs'])->name('front.achievements.achievements');
