@@ -103,10 +103,9 @@ class PartnerController extends Controller
         $partner = Partner::find($id);
         $workshops = Workshop::where('partner_id', $id)->get();
         $internships = Internship::where('partner_id', $id)->get();
-        // $researchProjects = Project::where('partner_id', $id)->get();
+        $partnerProject = Partner::with('projects')->find($id);
 
-
-        return view('front.partners.partnerDetail', ['partner' => $partner,'workshops'=>$workshops,'internships' =>$internships]);
+        return view('front.partners.partnerDetail', ['partner' => $partner,'workshops'=>$workshops,'internships' =>$internships,'projects' =>$partnerProject->projects]);
     }
 }
 

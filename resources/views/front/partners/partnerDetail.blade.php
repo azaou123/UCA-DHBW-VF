@@ -108,7 +108,30 @@
             @endforeach
         </div>
     </div>
-    
+    <div class="container my-5">
+        <h2 class="mb-4">Projects</h2>
+        <div class="row">
+            @foreach($projects as $project)
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$project->title}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted"> Objective : {{$project->objective}}</h6>
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="icon">
+                                <img width=200px src="{{asset('img/'.$project->image)}}">
+                            </div>
+                            <div class="icon"></div>
+                            <div class="icon"></div>
+                        </div>
+                            Duration: {{$project->duration_in_months}}<br>
+                        <p class="card-text"> Description: {{$project->description}}</p>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
     <!-- Footer Section -->
     @include('front.partials.footer')
 
