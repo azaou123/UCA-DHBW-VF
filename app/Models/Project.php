@@ -23,4 +23,10 @@ class Project extends Model
     {
         return $this->belongsToMany(Student::class);
     }
+
+    public function partners()
+    {
+        return $this->belongsToMany(Partner::class, 'project_partner', 'project_id', 'partner_id');
+    }
+
 }

@@ -64,6 +64,8 @@
                             <p>{{ $partner->description}}</p>
                             <a class="text-uppercase" href="{{ $partner->website }}" target="_blank">Visit Website <i
                                     class="bi bi-arrow-right"></i></a>
+                            <a class="text-uppercase" href="/partners/{{$partner->id}}" target="_blank">Learn more <i
+                                    class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
