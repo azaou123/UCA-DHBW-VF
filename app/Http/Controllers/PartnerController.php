@@ -3,6 +3,10 @@
 // App\Http\Controllers\YourController.php
 namespace App\Http\Controllers;
 use App\Models\Partner;
+use App\Models\Workshop;
+use App\Models\Project;
+use App\Models\Internship;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 class PartnerController extends Controller
@@ -94,6 +98,14 @@ class PartnerController extends Controller
         }
 
         return view('front.partners.partners', ['partners' => $partners]);
+    }
+    public function showPartner(int $id){
+        $partner = Partner::find($id);
+        $workshops = Workshop::where('partner_id', $id)->get();
+        $internships = Internship::where('partner_id', $id)->get();
+        $partnerProject = Partner::with('projects')->find($id);
+
+        return view('front.partners.partnerDetail', ['partner' => $partner,'workshops'=>$workshops,'internships' =>$internships,'projects' =>$partnerProject->projects]);
     }
 }
 

@@ -196,12 +196,19 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label for="description">Description</label>
-                                                <input type="text" class="form-control"
-                                                    style="background-color:#ffffff;" id="description"
-                                                    name="description" required>
+                                                <label for="type">Type</label>
+                                                <select class="form-select"
+                                                        style="background-color: #ffffff;" 
+                                                        id="type" 
+                                                        name="type" 
+                                                        required>
+                                                    <option value="" disabled selected>Choose a type</option>
+                                                    <option value="on-site">On-Site</option>
+                                                    <option value="online">Online</option>
+                                                </select>
                                             </div>
                                         </div>
+                                        
                                     </div>
 
                                     <div class="row">
@@ -237,13 +244,26 @@
                                                 <label for="partner_id">Partner</label>
                                                 <select class="form-select" aria-label="Default select example"
                                                     style="background-color:#ffffff;" id="partner_id" name="partner_id">
-                                                    <option disabled>Choose a partner</option>
+                                                    <option value="" disabled selected>Choose a partner</option>
+
                                                     @foreach($partners as $partner)
                                                     <option value="{{$partner->id}}">{{$partner->name_company}}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                         </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="description">Description</label>
+                                                <textarea class="form-control" 
+                                                          style="background-color: #ffffff;" 
+                                                          id="description" 
+                                                          name="description" 
+                                                          rows="4" 
+                                                          required></textarea>
+                                            </div>
+                                        </div>
+                                        
                                     </div>
                                     <button type="button" class="close btn btn-danger float-end mt-3"
                                         data-dismiss="modal" style="margin-left:10px !important;">Cancel</button>
