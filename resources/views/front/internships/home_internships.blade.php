@@ -65,6 +65,10 @@
             <div class="col-lg-7">
                 <h5 class="fw-bold text-primary text-uppercase">Refine your Search</h5>
                 <div class="box">
+<<<<<<< HEAD
+=======
+                    <!-- Filter Form -->
+>>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
                     <form id="filter-form" method="GET" class="d-flex align-items-center">
                         <!-- Filtre Year avec taille ajustée -->
                         <div class="me-2">
