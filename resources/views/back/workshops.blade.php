@@ -121,7 +121,7 @@
                         </button>
                     </div>
                 </div>
-                <!-- Add New Student Modal -->
+                <!-- Add New Workshop Modal -->
                 <div class="modal fade" tabindex="-1" role="dialog" id="modal_input" tabindex="-1" role="dialog" aria-labelledby="addStudentModalLabel">
                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                         <div class="modal-content">
@@ -215,15 +215,25 @@
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <div class="form-group">
+                                        <div class="form-group">
                                                 <label for="type">Type</label>
-                                                <input type="text" class="form-control" style="background-color:#ffffff;" id="type" name="type" required>
+                                                <select class="form-select" aria-label="Default select example" style="background-color:#ffffff;" id="university" name="type" required>
+                                                    <option  disabled>Choose Type</option>
+                                                    <option value="Conference">Conference</option>
+                                                    <option value="Seminar">Seminar</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="image_workshop">Workshop image</label>
                                                 <input type="file" class="form-control" id="image_workshop" name="image_workshop">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="ppt">Workshop PPT</label>
+                                                <input type="file" class="form-control" id="ppt" name="ppt" accept=".ppt,.pptx">
                                             </div>
                                         </div>
                                     </div>
@@ -236,7 +246,7 @@
                 </div>
 
                 
-                <!-- Table for Students -->
+                <!-- Table for workshops -->
                 <table class="table my-4">
                     <thead>
                         <tr>
@@ -259,8 +269,8 @@
                         @foreach($workshops as $workshop)
                             <tr id="{{ $workshop->id}}">
                                  <td>
-                                    @if($partner->logo)
-                                    <img src="{{  url('storage/workshops/'.$workshop->image)}}" alt="workshop image" class="rounded-circle" style="width: 70px; height: 70px;">
+                                 @if($workshop->image)
+                                     <img src="{{asset('storage/workshops/'.$workshop->image) }}" alt="workshop image" class="rounded-circle" style="width: 70px; height: 70px;">
                                     @else
                                         No logo
                                     @endif
@@ -330,7 +340,7 @@
                         <div class="modal-dialog  modal-dialog-centered modal-lg" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="addTeacherModalLabel" style="color:black;">Update exchange</h5>
+                                    <h5 class="modal-title" id="addTeacherModalLabel" style="color:black;">Update workshop</h5>
 
                                 </div>
                                     <div class="modal-body">
@@ -421,13 +431,25 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="type">Type</label>
-                                                        <input type="text" class="form-control" style="background-color:#ffffff;" id="type_update" name="type" required>
+                                                        <select class="form-select" aria-label="Default select example" style="background-color:#ffffff;" id="type_update" name="type" required>
+                                                            <option  disabled>Choose Type</option>
+                                                            <option value="Conference">Conference</option>
+                                                            <option value="Seminar">Seminar</option>
+                                                        </select>
+
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="image_workshop">Workshop image</label>
                                                         <input type="file" class="form-control" id="image_workshop_update" name="image_workshop">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label for="ppt">Workshop PPT</label>
+                                                        <input type="file" class="form-control" id="ppt_update" name="ppt">
                                                     </div>
                                                 </div>
                                             </div>

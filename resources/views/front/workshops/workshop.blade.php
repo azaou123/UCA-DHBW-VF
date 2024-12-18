@@ -15,17 +15,21 @@
     <div class="container-fluid position-relative p-0">
         @include('front.partials.navbar')
 
-<div id="sectionNotification" class="notification5 show">
+        <div id="sectionNotification" class="notification5 show">
             <div>Quick Navigation</div>
-        <div id="toggleNotificationArrow" onclick="toggleNotification()">
-            <i class="fa-solid fa-circle-arrow-left" style="color: #800000; font-size: 28px;"></i>
+            <div id="toggleNotificationArrow" onclick="toggleNotification()">
+                <i class="fa-solid fa-circle-arrow-left" style="color: #800000; font-size: 28px;"></i>
+            </div>
+            <ul>
+                <li>
+                    <div onclick="scrollToSection('workshops')">WORKSHOPS</div>
+                </li>
+                <li>
+                    <div onclick="scrollToSection('refine_search')">FILTER WORKSHOPS</div>
+                </li>
+
+            </ul>
         </div>
-        <ul>
-        <li><div onclick="scrollToSection('workshops')">WORKSHOPS</div></li>
-        <li><div onclick="scrollToSection('refine_search')">FILTER WORKSHOPS</div></li>
-        
-        </ul>
-    </div>
 
         <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
             <div class="row py-5">
@@ -50,7 +54,7 @@
                     <div class="section-title position-relative pb-3 mb-5">
                         <h1 class="mb-0">Workshops</h1>
                     </div>
-                    <p class="mb-4">These seminars aim to bring together students and teachers in various fields around the study of concrete cases in the context of a collaboration between the UCA and the DHBW. Conferences and support from the UCA and DHBW teams provided the data needed to carry out the seminar.</p>
+                    <p class="mb-4">The workshops organized as part of the collaboration between the University Cadi Ayyad (UCA) and the Baden-Württemberg Cooperative State University (DHBW) aim to bring together students and faculty members from various disciplines to study real-world cases. These seminars provide an opportunity for participants to engage in valuable knowledge exchange and practical learning. The events feature expert-led conferences and sessions supported by both UCA and DHBW teams, offering the necessary data to carry out these seminars. Topics covered in the workshops range from engineering and technology to information systems management and decision-making, preparing students to tackle complex challenges in the professional world. Additionally, practical workshops allow participants to deepen their theoretical knowledge through hands-on case studies, applying their skills in real-world contexts. These events also provide a great networking opportunity, fostering connections between students, faculty, and industry professionals.</p>
                 </div>
                 <div class="col-lg-5">
                     <div class="position-relative">
@@ -90,7 +94,9 @@
                 <!-- Display filtered workshops -->
                 @if (isset($filteredWorkshops))
                 <div class="col-12">
-                    <center><h2 class="fw-bold text-primary text-uppercase">Filtered Workshops for {{ $year }}</h2></center>
+                    <center>
+                        <h2 class="fw-bold text-primary text-uppercase">Filtered Workshops for {{ $year }}</h2>
+                    </center>
                     <div class="box_filter mt-3 text-center">
                         @if($filteredWorkshops->isEmpty())
                         <p>No workshops found for the selected year.</p>
@@ -109,16 +115,16 @@
                                     <i class="far fa-calendar-alt text-primary me-2"></i>{{date('M d, Y', strtotime($workshop->date_start))}} - {{date('M d, Y', strtotime($workshop->date_end)) }}
                                     <br>
                                     <i class='fas fa-university' style='color:#800000'></i>&nbsp;&nbsp;{{ $workshop->university }}<br><br>
-                                    <!-- <h6 class="text-primary text-uppercase" style="display: inline;">OBJECTIVE : </h6>{{$workshop->objective}}<br><br> -->
                                     <div>
                                         <h6 data-bs-toggle="collapse" data-bs-target="#workshopDescription{{$workshop->id}}" aria-expanded="false" aria-controls="workshopDescription{{$workshop->id}}" class="text-primary text-uppercase" style="cursor: pointer;">
-        DESCRIPTION
-    </h6>
-    <div id="workshopDescription{{$workshop->id}}" class="collapse" style="text-align : justify; margin : 20px;">
-        <!-- Content to be collapsed -->
-        {{ $workshop->description }}
-    </div>
+                                            DESCRIPTION
+                                        </h6>
+                                        <div id="workshopDescription{{$workshop->id}}" class="collapse" style="text-align : justify; margin : 20px;">
+                                            <!-- Content to be collapsed -->
+                                            {{ $workshop->description }}
+                                        </div>
                                     </div>
+                                    <a href="{{ route('workshop.workshopDetails', $workshop->id) }}" class="btn btn-primary">See details</a>
                                 </div>
                             </div>
                             @endforeach
@@ -127,8 +133,8 @@
                     </div>
                 </div>
                 <div class="pagination">
-            {{ $filteredWorkshops->appends(['year' => $year])->links('pagination::bootstrap-5') }}
-        </div>
+                    {{ $filteredWorkshops->appends(['year' => $year])->links('pagination::bootstrap-5') }}
+                </div>
                 @endif
             </div>
         </div>
@@ -145,7 +151,7 @@
 
     <!-- AJAX script for form submission and pagination -->
     @include('front.partials.form_script')
-    
+
     <!-- Quick Navigation Script-->
     @include('front.partials.navigation_script')
 </body>

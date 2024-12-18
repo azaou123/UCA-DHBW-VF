@@ -65,6 +65,9 @@ Route::get('/faculty_staff_exchange', [TeacherController::class, 'filterTeachers
 
 //Workshops Controller : Front Office
 Route::get('/workshop', [WorkshopController::class, 'filterWorkshop'])->name('workshops');
+Route::get('/workshop/{id}', [WorkshopController::class, 'show'])->name('workshop.workshopDetails');
+
+
 
 //News Controller : Front Office
 // In routes/web.php
@@ -153,11 +156,13 @@ Route::group(['middleware' => 'admin.auth'], function () {
     Route::delete('/exchange-deleteRoute/{exchange}', [Exchangecontroller::class, 'destroy'])->name('exchanges.destroy');
     Route::post('exchanges.add', [Exchangecontroller::class, 'store'])->name('exchanges.add');
     Route::put('/exchanges/update/{exchange}', [ExchangeController::class, 'update'])->name('exchanges.update');
+    
     // workshops  
     Route::get('/workshops', [AdminController::class, 'workshops'])->name('workshops');
     Route::delete('/workshops-deleteRoute/{workshop}', [Workshopcontroller::class, 'destroy'])->name('workshops.destroy');
     Route::post('workshops.add', [Workshopcontroller::class, 'store'])->name('workshops.add');
     Route::put('/workshops/update/{workshop}', [Workshopcontroller::class, 'update'])->name('workshops.update');
+   
     // Partners 
     Route::get('/partner', [AdminController::class, 'partners'])->name('partners');
     Route::delete('/partners-deleteRoute/{partner}', [Partnercontroller::class, 'destroy'])->name('partners.destroy');
