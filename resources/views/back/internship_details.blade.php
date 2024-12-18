@@ -124,7 +124,7 @@
                     <div class="bg-secondary rounded-top p-4">
                         <div class="row">
                             <div class="col-12 col-sm-12 text-sm-start">
-                                <h5>Edit The Internship </h5>
+                                <h5>Edit The Inetrnship </h5>
                                 <hr>
                                 <form action="{{ route('internships.update', $internship->id) }}" method="post">
                                     @csrf
@@ -134,26 +134,18 @@
                                         <input type="text" class="form-control" id="title" name="title"
                                             value="{{ $internship->title }}" required>
                                     </div>
-<<<<<<< HEAD
                                     <div class="form-group">
                                         <label for="title">Type</label>
                                         <input type="text" class="form-control" id="type" name="type"
                                             value="{{ $internship->type }}" required>
                                     </div>
-=======
-                                 
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
 
                                     <div class="form-group">
                                         <label for="description">Description</label>
                                         <textarea class="form-control" id="description" name="description" rows="4"
                                             required>{{ $internship->description }}</textarea>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="title">Type</label>
-                                        <input type="text" class="form-control" id="type" name="type"
-                                            value="{{ $internship->type }}" required>
-                                    </div>
+
                                     <div class="form-group">
                                         <label for="date_start">Start Date</label>
                                         <input type="date" class="form-control" id="date_start" name="date_start"
