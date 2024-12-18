@@ -195,11 +195,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="type">Type</label>
-<<<<<<< HEAD
                                                 <select class="form-select" 
-=======
-                                                <select class="form-select"
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
                                                         style="background-color: #ffffff;" 
                                                         id="type" 
                                                         name="type" 
@@ -211,11 +207,8 @@
                                             </div>
                                         </div>
                                         
-<<<<<<< HEAD
                            
                                         
-=======
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
                                     </div>
 
                                     <div class="row">
@@ -252,10 +245,6 @@
                                                 <select class="form-select" aria-label="Default select example"
                                                     style="background-color:#ffffff;" id="partner_id" name="partner_id">
                                                     <option value="" disabled selected>Choose a partner</option>
-<<<<<<< HEAD
-=======
-
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
                                                     @foreach($partners as $partner)
                                                     <option value="{{$partner->id}}">{{$partner->name_company}}</option>
                                                     @endforeach
@@ -273,7 +262,6 @@
                                                           required></textarea>
                                             </div>
                                         </div>
-<<<<<<< HEAD
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label for="description">Report Link</label>
@@ -285,9 +273,6 @@
                                                           required>
                                             </div>
                                         </div>
-=======
-                                        
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
                                     </div>
                                     <button type="button" class="close btn btn-danger float-end mt-3"
                                         data-dismiss="modal" style="margin-left:10px !important;">Cancel</button>
