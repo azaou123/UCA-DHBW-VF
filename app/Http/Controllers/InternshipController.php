@@ -18,6 +18,37 @@ class InternshipController extends Controller
         $teachers = Teacher::all();
         return view('back.internship_details', compact('internship','internships','partners','students','teachers'));
     }
+    public function show($id)
+    {
+        // Récupérer les détails du stage avec ses relations
+        $news = Internship::with(['students', 'teachers'])->find($id);
+    
+        // Vérifiez si $news est nul pour éviter une erreur
+        if (!$news) {
+            return abort(404, 'Stage introuvable.');
+        }
+    
+        // Transmettre les variables à la vue
+        return view('front.news.show', [
+            'news' => $news,
+            'students' => $news->students,
+            'teachers' => $news->teachers,
+        ]);
+    }
+    
+
+    public function showNews($slug)
+    {
+        $news = Internship::where('slug', $slug)->first();
+    
+        // Récupérer les étudiants associés à ce stage
+        $students = $news->students; // Assurez-vous que la relation est définie dans le modèle Internship
+        
+        // Récupérer les enseignants associés à ce stage
+        $teachers = $news->teachers; // Assurez-vous que la relation est définie dans le modèle Internship
+    
+        return view('front.news.showNews', compact('news', 'students', 'teachers'));
+    }
     public function affectStudents(Request $request, $internshipId)
 {
     // Validate the request data

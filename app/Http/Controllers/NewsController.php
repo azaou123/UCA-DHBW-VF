@@ -92,4 +92,42 @@ class NewsController extends Controller
 
     return view('front.news.showNews', ['news' => $news, 'type' => $type]);
 }
+
+public function showFiltredNews(Request $request)
+{
+    $category = $request->get('category');
+
+    $workshops = [];
+    $internships = [];
+    $programs = [];
+    $fablabs = [];
+    $projects = [];
+
+    if ($category) {
+        switch ($category) {
+            case 'workshops':
+                $workshops = Workshop::all();
+                break;
+            case 'internships':
+                $internships = Internship::all();
+                break;
+            case 'programs':
+                $programs = Program::all();
+                break;
+            case 'fablabs':
+              $fablabs = Fablab::all();
+              break;
+            case 'projects':
+              $projects = Project::all();
+              break;
+            default:
+              break;
+        }
+    }
+
+    // Return the view with the filtered results
+    return view('front.news.news', compact('workshops', 'internships', 'programs', 'fablabs', 'projects'));
+}
+
+
 }

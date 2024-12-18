@@ -727,6 +727,7 @@ form a:hover{
 
 .notification.show {
             right: 20px;
+            width: 240px;
         }
                   
                   @media(max-width : 700px){
@@ -751,6 +752,49 @@ form a:hover{
             cursor: pointer;
             display: block;
         }
+
+
+
+        
+.notification11 {
+    position: fixed;
+    right: -150px;
+    background-color: #800000;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: right 0.5s ease-out;
+    top: 140px;
+    cursor: pointer;
+}
+
+.notification11.show {
+    right: 20px;
+    width: 240px;
+}
+
+
+
+.notification1 {
+    position: fixed;
+    right: -150px;
+    background-color: #800000;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+    transition: right 0.5s ease-out;
+    top: 140px;
+    cursor: pointer;
+}
+
+.notification1.show {
+    right: 20px;
+    width: 240px;
+}
 
 .notification2 {
             position: fixed;
@@ -908,3 +952,34 @@ form a:hover{
             margin-bottom: 10px;
             cursor: pointer;
         }
+
+        .notification7 {
+          position: fixed;
+          right: -240px;
+          background-color: #800000;
+          color: #fff;
+          padding: 15px;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+          z-index: 2;
+          transition: right 0.5s ease-out;
+          top: 140px;
+          cursor: pointer;
+      }
+
+      .notification7.show {
+          right: 20px;
+      }
+                
+                @media(max-width : 700px){
+                    .notification7.show {
+          right: 5px;
+                        }
+                        
+      
+                }
+
+      .notification7 div {
+          margin-bottom: 10px;
+          cursor: pointer;
+      }

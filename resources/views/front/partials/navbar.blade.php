@@ -1,7 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-dark px-2 py-2 py-lg-0">
     <a href="/" class="navbar-brand p-0">
         <div class="logo">
-            <img src="{{asset('img/uca_logo.png')}}" alt="UCA Logo" class="img-fluid m-0 p-0"><img src="{{asset('img/dhbw_logo.png')}}" alt="DHBW Logo" class="img-fluid m-0 p-0">
+            <img src="{{asset('img/uca_logo.png')}}" alt="UCA Logo" class="img-fluid m-0 p-0">
+            <img src="{{asset('img/dhbw_logo.png')}}" alt="DHBW Logo" class="img-fluid m-0 p-0">
         </div>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -18,10 +19,11 @@
                     <a href="/home-internships" class="dropdown-item">Internships</a>
                 </div>
             </div>
+            <a href="/news" class="nav-item nav-link">News</a>
             <a href="/workshop" class="nav-item nav-link">Workshops</a>
             <a href="/research_projects" class="nav-item nav-link">Research Projects</a>
 
-            <div class="nav-item dropdown">
+     <!--      <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Programs</a>
                 <div class="dropdown-menu m-0">
                     <a href="/program" class="dropdown-item">Programs</a>
@@ -29,9 +31,14 @@
                     <a href="/cultural_programs" class="dropdown-item">Cultural Programs</a>
                 </div>
             </div>
-                        <a href="/achievements" class="nav-item nav-link">Achievements</a>
+
+--> 
+            
 
 
+
+
+            <a href="/achievements" class="nav-item nav-link">Achievements</a>
             <a href="/partners" class="nav-item nav-link">Partners</a>
             <a href="/login" class="nav-item nav-link">Login</a>
         </div>
@@ -41,6 +48,7 @@
         </div>
     </div>
 </nav>
+
 
 <script>
     // Function to toggle search input visibility

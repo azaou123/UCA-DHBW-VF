@@ -85,6 +85,8 @@
                             class="fa-solid fa-group-arrows-rotate me-2"></i>Fablabs</a>
                     <a href="{{ route('programs') }}" class="nav-item nav-link"><i
                             class="fa-solid fa-list me-2"></i>Programs</a>
+                     <a href="{{ route('settings') }}" class="nav-item nav-link"><i
+                            class="fa-solid fa-cogs me-2"></i>Settings</a>
                 </div>
             </nav>
         </div>

@@ -11,6 +11,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\FablabController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\InternshipController;
+use App\Http\Controllers\SettingsController;
 
 
 use App\Http\Controllers\LogController;
@@ -66,7 +67,8 @@ Route::get('/faculty_staff_exchange', [TeacherController::class, 'filterTeachers
 Route::get('/workshop', [WorkshopController::class, 'filterWorkshop'])->name('workshops');
 
 //News Controller : Front Office
-Route::get('/news', [NewsController::class, 'displayNews'])->name('front.news.news');
+// In routes/web.php
+Route::get('/news', [NewsController::class, 'showFiltredNews'])->name('front.news.news');
 Route::get('/', [NewsController::class, 'index'])->name('front.index');
 Route::get('/news/{slug}', [NewsController::class, 'showNews'])->name('front.news.showNews');
 
@@ -128,6 +130,7 @@ Route::group(['middleware' => 'admin.auth'], function () {
     // Route::get('/projects', [AdminController::class, 'projects'])->name('projects');
     // Route::get('/fablabs', [AdminController::class, 'fablabs'])->name('fablabs');
     // Route::get('/programs', [AdminController::class, 'programs'])->name('programs');
+
 
 
     // Teacher Part 
@@ -192,6 +195,14 @@ Route::group(['middleware' => 'admin.auth'], function () {
     // Route::delete('/programs-deleteRoute/{program}', [ProgramController::class, 'destroy'])->name('programs.destroy');
     // Route::post('programs.add', [ProgramController::class, 'store'])->name('programs.add');
     // Route::put('/programs/update/{program}', [ProgramController::class, 'update'])->name('programs.update');
+
+    // settings 
+    Route::get('/settings', [AdminController::class, 'settings'])->name('settings');  // This is for showing the settings page.
+    Route::post( '/settings/add', [SettingsController::class, 'store'])->name('settings.add'); // The route for storing settings.
+    Route::put('/settings/update/{setting}', action: [SettingsController::class, 'update'])->name('settings.update');
+    Route::delete('/settings/{setting}', [SettingsController::class, 'destroy'])->name('settings.destroy');
+    Route::get('/setting/{key}', [SettingsController::class, 'getSettingByKey']);
+
 });
 
 
