@@ -134,6 +134,11 @@
                                         <input type="text" class="form-control" id="title" name="title"
                                             value="{{ $internship->title }}" required>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="title">Type</label>
+                                        <input type="text" class="form-control" id="type" name="type"
+                                            value="{{ $internship->type }}" required>
+                                    </div>
 
                                     <div class="form-group">
                                         <label for="description">Description</label>
@@ -159,6 +164,11 @@
                                             value="{{ $internship->company }}" required>
                                     </div>
 
+                                    <div class="form-group">
+                                        <label for="company">Report Link</label>
+                                        <input type="text" class="form-control" id="report_link" name="report_link"
+                                            value="{{ $internship->report_link }}" required>
+                                    </div>
                                     <div class="form-group">
                                         <label for="partner_id">Partner</label>
                                         <select class="form-select" id="partner_id" name="partner_id">

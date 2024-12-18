@@ -65,18 +65,34 @@
             <div class="col-lg-7">
                 <h5 class="fw-bold text-primary text-uppercase">Refine your Search</h5>
                 <div class="box">
-                    <!-- Filter Form -->
-                    <form id="filter-form" method="GET" class="d-flex">
-                        <select name="year" class="form-select me-2">
-                            <option disabled selected>Year</option>
-                            @foreach($years as $optionYear)
-                            <option value="{{ $optionYear }}" {{ $year == $optionYear ? 'selected' : '' }}>
-                                {{ $optionYear }}
-                            </option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Apply Filters</button>
+                    <form id="filter-form" method="GET" class="d-flex align-items-center">
+                        <!-- Filtre Year avec taille ajustée -->
+                        <div class="me-2">
+                            <select name="year" class="form-select" style="width: 120px;">
+                                <option disabled selected>Year</option>
+                                @foreach($years as $optionYear)
+                                    <option value="{{ $optionYear }}" {{ $year == $optionYear ? 'selected' : '' }}>
+                                        {{ $optionYear }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    
+                        <!-- Filtre Type avec taille ajustée -->
+                        <div class="me-2">
+                            <select name="type" class="form-select" style="width: 150px;">
+                                <option disabled selected>Type</option>
+                                <option value="online" {{ request('type') == 'online' ? 'selected' : '' }}>Online</option>
+                                <option value="on_site" {{ request('type') == 'on_site' ? 'selected' : '' }}>On Site</option>
+                            </select>
+                        </div>
+                    
+                        <!-- Bouton Apply Filters -->
+                        <button type="submit" class="btn btn-primary py-2 px-4">
+                            Apply Filters
+                        </button>
                     </form>
+                    
                 </div>
             </div>
         </div>
@@ -114,7 +130,12 @@
     <div id="workshopDescription{{ $internship->id }}" class="collapse" style="text-align : justify; margin : 20px;">
         <!-- Content to be collapsed -->
         {{ $internship->description }}
+        <a class="text" href="{{ route('front.news.showNews', ['slug' => $internship->slug]) }}">...Read More</a>
+
+        
+      
     </div>
+ 
                                 </div>
                             </div>
                             @endforeach

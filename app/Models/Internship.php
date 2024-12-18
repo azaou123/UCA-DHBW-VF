@@ -9,7 +9,7 @@ class Internship extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'description', 'date_start', 'date_end', 'company', 'partner_id'];
+    protected $fillable = ['title', 'slug', 'description', 'date_start', 'date_end', 'company', 'partner_id','type','report_link'];
 
     public function partner()
     {
