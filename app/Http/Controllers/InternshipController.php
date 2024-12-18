@@ -89,11 +89,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'company' => 'required|string|max:255',
             'partner_id' => 'nullable|exists:partners,id',
             'type' => 'required|in:on-site,online', // Validation pour 'type'
-<<<<<<< HEAD
             'report_link' => 'nullable|url',
             
-=======
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
 
         ]);
 
@@ -106,11 +103,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'company' => $request->input('company'),
             'partner_id' => $request->input('partner_id'),
             'type' => $request->input('type'), // Ajout du champ
-<<<<<<< HEAD
             'report_link' => $request->input('report_link'),
 
-=======
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
 
         ]);
 
@@ -134,10 +128,7 @@ public function removeSupervisor($internshipId, $supervisorId)
             'company' => 'required|string|max:255',
             'partner_id' => 'nullable|exists:partners,id',
             'type' => 'required|in:on-site,online', // Validation pour 'type'
-<<<<<<< HEAD
             'report_link' => 'nullable|url',
-=======
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
 
         ]);
 
@@ -150,11 +141,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'company' => $request->input('company'),
             'partner_id' => $request->input('partner_id'),
             'type' => $request->input('type'), // Mise à jour du champ
-<<<<<<< HEAD
             'report_link' => $request->input('report_link'),
 
-=======
->>>>>>> 24f523cc127276cfc7f404b0153f5dcfb6444507
 
         ]);
 
