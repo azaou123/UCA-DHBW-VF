@@ -21,8 +21,10 @@ class Workshop extends Model
         'date_end',
         'type',
         'image_workshop',
+        'ppt',
     ];
 
+    
     public function partner()
     {
         return $this->belongsTo(Partner::class, 'partner_id');
@@ -30,7 +32,7 @@ class Workshop extends Model
 
     public function teachers()
     {
-        return $this->belongsToMany(Teacher::class);
+        return $this->belongsToMany(Teacher::class, 'teacher_workshop');
     }
 
 

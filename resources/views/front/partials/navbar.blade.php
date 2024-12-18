@@ -18,7 +18,15 @@
                     <a href="/home-internships" class="dropdown-item">Internships</a>
                 </div>
             </div>
-            <a href="/workshop" class="nav-item nav-link">Workshops</a>
+
+            <div class="nav-item dropdown">
+            <a href="/#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Workshops</a>
+                <div class="dropdown-menu m-0">
+                <a href="/workshop" class="dropdown-item">Workshops</a>
+                <a href="/cultural_programs" class="dropdown-item">Cultural Programs</a>
+                </div>
+            </div>
+
             <a href="/research_projects" class="nav-item nav-link">Research Projects</a>
 
             <div class="nav-item dropdown">
@@ -26,10 +34,9 @@
                 <div class="dropdown-menu m-0">
                     <a href="/program" class="dropdown-item">Programs</a>
                     <a href="/academic_programs" class="dropdown-item">Academic Programs</a>
-                    <a href="/cultural_programs" class="dropdown-item">Cultural Programs</a>
                 </div>
             </div>
-                        <a href="/achievements" class="nav-item nav-link">Achievements</a>
+            <a href="/achievements" class="nav-item nav-link">Achievements</a>
 
 
             <a href="/partners" class="nav-item nav-link">Partners</a>

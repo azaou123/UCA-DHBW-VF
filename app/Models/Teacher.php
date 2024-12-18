@@ -14,10 +14,10 @@ class Teacher extends Model
         'email', 'phone_number', 'photo',
     ];
 
-    public function workshops()
-    {
-        return $this->belongsToMany(Workshop::class);
-    }
+     public function workshops()
+{
+    return $this->belongsToMany(Workshop::class, 'teacher_workshop');
+}
     public function internships()
     {
         return $this->belongsToMany(Internship::class, 'internship_teacher', 'teacher_id', 'internship_id');

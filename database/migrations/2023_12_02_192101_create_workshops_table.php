@@ -22,8 +22,9 @@ return new class extends Migration
             $table->string('city');
             $table->date('date_start');
             $table->date('date_end');
-            $table->string('type');
+            $table->enum('type', ['Seminar', 'Conference']); 
             $table->string('image')->nullable();
+            $table->string('ppt')->nullable();
             $table->timestamps();
 
             $table->foreign('partner_id')->references('id')->on('partners')->onDelete('set null');

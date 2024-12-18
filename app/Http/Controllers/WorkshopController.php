@@ -20,8 +20,9 @@ class WorkshopController extends Controller
             'city' => 'required|string|max:255',
             'date_start' => 'required|date',
             'date_end' => 'required|date|after_or_equal:date_start',
-            'type' => 'required|string|max:255',
-            'image_workshop' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'type' => 'required|string|in:Seminar,Conference',
+            'image_workshop' => 'image|mimes:jpeg,png,jpg,gif',
+            'ppt' => 'mimes:ppt,pptx' // Validation for ppt file
         ]);
 
         // Create a new workshop instance
@@ -43,6 +44,14 @@ class WorkshopController extends Controller
             $imageWorkshop->storeAs('public/workshops/', $filename);
             $workshop->image = $filename;
         }
+         // Handle the ppt field (PowerPoint file)
+         if ($request->hasFile('ppt')) {
+            $pptFile = $request->file('ppt');
+            $pptFilename = time() . '_' . $pptFile->getClientOriginalName();
+            $pptFile->storeAs('public/workshops/', $pptFilename);
+            $workshop->ppt = $pptFilename;
+        }
+
         // Save the workshop to the database
         $workshop->save();
 
@@ -56,6 +65,14 @@ class WorkshopController extends Controller
             $imagePath = storage_path('app/public/workshops/' . $workshop->image);
             if (file_exists($imagePath)) {
                 unlink($imagePath);
+            }
+        }
+
+         // Delete the associated ppt file if it exists
+         if ($workshop->ppt) {
+            $pptPath = storage_path('app/public/workshops/' . $workshop->ppt);
+            if (file_exists($pptPath)) {
+                unlink($pptPath);
             }
         }
 
@@ -75,11 +92,12 @@ class WorkshopController extends Controller
             'city' => 'required|string|max:255',
             'date_start' => 'required|date',
             'date_end' => 'required|date|after_or_equal:date_start',
-            'type' => 'required|string|max:255',
-            'image_workshop' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'type' => 'required|string|in:Seminar,Conference',
+            'image_workshop' => 'image|mimes:jpeg,png,jpg,gif',
+            'ppt' => 'mimes:ppt,pptx' // Validation for ppt file
         ]);
     
-        $workshop->fill($request->except('image_workshop'));
+        $workshop->fill($request->except('image_workshop', 'ppt'));
     
         if ($request->hasFile('image_workshop')) {
             // Delete the old image if it exists
@@ -96,6 +114,23 @@ class WorkshopController extends Controller
             $imageWorkshop->storeAs('public/workshops/', $filename);
             $workshop->image = $filename;
             $workshop->slug = Str::slug($workshop->title);
+        }
+
+         // Handle the ppt field (PowerPoint file) for update
+         if ($request->hasFile('ppt')) {
+            // Delete the old ppt file if it exists
+            if ($workshop->ppt) {
+                $oldPptPath = storage_path('app/public/workshops/' . $workshop->ppt);
+                if (file_exists($oldPptPath)) {
+                    unlink($oldPptPath);
+                }
+            }
+
+            // Store the new ppt file
+            $pptFile = $request->file('ppt');
+            $pptFilename = time() . '_' . $pptFile->getClientOriginalName();
+            $pptFile->storeAs('public/workshops/', $pptFilename);
+            $workshop->ppt = $pptFilename;
         }
     
         $workshop->save();
@@ -134,6 +169,21 @@ class WorkshopController extends Controller
         // Pass data to the view, including $years
         return view('front.workshops.workshop', compact('workshops', 'years', 'filteredWorkshops', 'year'));
     }
+
+    // Récupérer les informations de workshop selectionner
+    public function show($id)
+    {
+    // Récupérer le workshop avec les informations de l'hôte (teacher)
+    $workshop = Workshop::with('teachers')->findOrFail($id);
+
+    return view('front.workshops.workshopDetails', compact('workshop'));
+    }
+    
+
+
+
+
+
     // public function filterTeachers(Request $request)
     // {
     //     // Get all students
