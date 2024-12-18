@@ -10,14 +10,25 @@ class Teacher extends Model
     use HasFactory;
 
     protected $fillable = [
-        'firstname', 'lastname', 'speciality', 'nationnality', 'university',
-        'email', 'phone_number', 'photo',
+        'firstname',
+        'lastname',
+        'speciality',
+        'nationnality',
+        'university',
+        'email',
+        'phone_number',
+        'photo',
     ];
 
     public function workshops()
     {
         return $this->belongsToMany(Workshop::class);
     }
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_teacher');
+    }
+
     public function internships()
     {
         return $this->belongsToMany(Internship::class, 'internship_teacher', 'teacher_id', 'internship_id');

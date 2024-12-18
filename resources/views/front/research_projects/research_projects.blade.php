@@ -15,17 +15,21 @@
     <div class="container-fluid position-relative p-0">
         @include('front.partials.navbar')
 
-<div id="sectionNotification" class="notification2 show">
+        <div id="sectionNotification" class="notification2 show">
             <div>Quick Navigation</div>
-        <div id="toggleNotificationArrow" onclick="toggleNotification()">
-            <i class="fa-solid fa-circle-arrow-left" style="color: #800000; font-size: 28px;"></i>
+            <div id="toggleNotificationArrow" onclick="toggleNotification()">
+                <i class="fa-solid fa-circle-arrow-left" style="color: #800000; font-size: 28px;"></i>
+            </div>
+            <ul>
+                <li>
+                    <div onclick="scrollToSection('research_projects')">RESEARCH PROJECTS</div>
+                </li>
+                <li>
+                    <div onclick="scrollToSection('results-container')">AVAILABLE PROJECTS</div>
+                </li>
+
+            </ul>
         </div>
-        <ul>
-        <li><div onclick="scrollToSection('research_projects')">RESEARCH PROJECTS</div></li>
-        <li><div onclick="scrollToSection('results-container')">AVAILABLE PROJECTS</div></li>
-        
-        </ul>
-    </div>
 
         <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
             <div class="row py-5">
@@ -68,22 +72,22 @@
         </div>
 
         @foreach($projects as $project)
-        
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-lg-7">
-                        <h4 class="mb-3">{{ $project->title }}</h4>
-                        <p>{{ Str::limit($project->description, 300, '...') }}</p>
-                        <a class="text-uppercase" href="{{ route('front.research_projects.showProjects', ['projects' => $project->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
-                    </div>
-                    <div class="col-lg-5">
-                        <div class="position-relative h-100">
-                            <img class="rounded wow zoomIn img-fluid" data-wow-delay="0.9s" src="{{ asset('storage/projects/'.$project->image) }}" width="300" height="100">
-                        </div>
+
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-7">
+                    <h4 class="mb-3">{{ $project->title }}</h4>
+                    <p>{{ Str::limit($project->description, 300, '...') }}</p>
+                    <a class="text-uppercase" href="{{ route('front.research_projects.showProjects', ['projects' => $project->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
+                </div>
+                <div class="col-lg-5">
+                    <div class="position-relative h-100">
+                        <img class="rounded wow zoomIn img-fluid" data-wow-delay="0.9s" src="{{ asset('storage/projects/'.$project->image) }}" width="300" height="100">
                     </div>
                 </div>
             </div>
-        
+        </div>
+
         @endforeach
 
         <div class="pagination">

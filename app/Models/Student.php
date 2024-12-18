@@ -33,4 +33,9 @@ class Student extends Model
     {
         return $this->belongsToMany(Fablab::class);
     }
+
+    public function projects_student()
+    {
+        return $this->belongsToMany(Project::class, 'project_student');
+    }
 }

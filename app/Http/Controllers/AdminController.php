@@ -23,14 +23,14 @@ class AdminController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        if (Auth::guard('admin')->attempt($credentials)) { 
+        if (Auth::guard('admin')->attempt($credentials)) {
             $admin = Auth::guard('admin')->user();
             session(['admin' => [
                 'name' => $admin->name,
                 'email' => $admin->email,
                 'photo' => $admin->photo
             ]]);
-            return redirect()->intended('admin'); 
+            return redirect()->intended('admin');
         }
         return back()->withErrors([
             'email' => 'password or email is incorrect.',
@@ -40,7 +40,7 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
 
-        return view('front.login.login'); 
+        return view('front.login.login');
     }
     public function index()
     {
@@ -50,34 +50,35 @@ class AdminController extends Controller
     public function students()
     {
         $students = Student::all();
-        return view('back.students',compact('students'));
+        return view('back.students', compact('students'));
     }
 
     public function teachers()
     {
         $teachers = Teacher::all();
-        return view('back.teachers',compact('teachers'));
+        return view('back.teachers', compact('teachers'));
     }
 
     public function exchanges()
     {
         $exchanges = Exchange::all();
-        return view('back.exchanges',compact('exchanges'));
-        
+        return view('back.exchanges', compact('exchanges'));
     }
 
     public function workshops()
     {
         $partners = Partner::all();
         $workshops = Workshop::all();
-
-        return view('back.workshops',compact('partners', 'workshops'));
+        return view('back.workshops', compact('partners', 'workshops'));
     }
 
     public function projects()
     {
         $projects = Project::all();
-        return view('back.projects', compact('projects'));
+        $teachers = Teacher::all();
+        $students = Student::all();
+        $partners = Partner::all();
+        return view('back.projects', compact('projects', 'teachers', 'students', 'partners'));
     }
 
     public function fablabs()
@@ -89,26 +90,25 @@ class AdminController extends Controller
     public function programs()
     {
         $programs = Program::all();
-        $teachers=Teacher::all();
-        return view('back.programs', compact('programs','teachers'));
-        
+        $teachers = Teacher::all();
+        return view('back.programs', compact('programs', 'teachers'));
     }
     public function partners()
     {
         $partners = Partner::all();
-        
-        return view('back.partners',compact('partners'));
+
+        return view('back.partners', compact('partners'));
     }
     public function internships()
     {
         $students = Student::all();
         $internships = Internship::all();
-        $partners=Partner::all();
-        return view('back.internships',compact('internships','partners','students'));
+        $partners = Partner::all();
+        return view('back.internships', compact('internships', 'partners', 'students'));
     }
     public function news()
     {
         $news = News::all();
-        return view('back.news',compact('news','news'));
+        return view('back.news', compact('news', 'news'));
     }
 }

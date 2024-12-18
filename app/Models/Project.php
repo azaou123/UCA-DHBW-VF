@@ -13,14 +13,25 @@ class Project extends Model
         'title',
         'slug',
         'description',
+        'Objective',
+        'duration_in_months',
         'image_project',
-        'slug'
-
+        'project_details',
+        'slug',
+        'created_at',
     ];
 
 
     public function students()
     {
         return $this->belongsToMany(Student::class);
+    }
+    public function teachers()
+    {
+        return $this->belongsToMany(Teacher::class, 'project_teacher');
+    }
+    public function partners()
+    {
+        return $this->belongsToMany(Partner::class, 'project_partner');
     }
 }
