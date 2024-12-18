@@ -33,24 +33,58 @@
         <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
             <div class="container py-5">
                 <div class="row g-5">
-                    <div class="col-lg-7">
-                        <div class="section-title position-relative pb-3 mb-5">
-                            @if($news instanceof \App\Models\Workshop)
-                            <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Workshops</h5>
-                            @elseif($news instanceof \App\Models\Project)
-                            <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Research Projects</h5>
-                            @elseif($news instanceof \App\Models\Internship)
-                            <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Internships</h5>
-                            @elseif($news instanceof \App\Models\Program)
-                            <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Programs</h5>
-                            @elseif($news instanceof \App\Models\Fablab)
-                            <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Achievements</h5>
-                        @endif
-                            
-                            <h1 class="mb-0">{{ $news->title }}</h1>
-                        </div>
-                        <p class="mb-4">{{ $news->description }}</p>
-                    </div>
+                  <div class="col-lg-7">
+                  <div class="section-title position-relative pb-3 mb-5">
+                      @if($news instanceof \App\Models\Workshop)
+                          <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Workshops</h5>
+                      @elseif($news instanceof \App\Models\Project)
+                          <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Research Projects</h5>
+                      @elseif($news instanceof \App\Models\Internship)
+                          <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Internships</h5>
+                      @elseif($news instanceof \App\Models\Program)
+                          <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Programs</h5>
+                      @elseif($news instanceof \App\Models\Fablab)
+                          <h5 class="fw-bold text-primary text-uppercase" id="latest_news">Achievements</h5>
+                      @endif
+
+                      <h1 class="mb-0">{{ $news->title }}</h1>
+                  </div>
+
+                  <!-- Description principale -->
+                  <p class="mb-4">{{ $news->description }}</p>
+
+                  <!-- Détails supplémentaires pour Internship -->
+                  @if($news instanceof \App\Models\Internship)
+                      <div>
+                          @if($news->students->count() > 0)
+                              <h3>Students :</h3>
+                              <ul>
+                                  @foreach($news->students as $student)
+                                      <li>{{ $student->firstname }} {{ $student->lastname }}</li>
+                                  @endforeach
+                              </ul>
+                          @else
+                              <p>No participating students are available.</p>
+                          @endif
+                      </div>
+                  @endif
+
+                  @if($news instanceof \App\Models\Internship)
+                              <div>
+                              
+                                  @if($news->teachers->count() > 0)
+                                      <h3>Teachers :</h3>
+                                      <ul>
+                                          @foreach($news->teachers as $teacher)
+                                              <li>{{ $teacher->firstname }} {{ $teacher->lastname }}</li>
+                                          @endforeach
+                                      </ul>
+                                  @else
+                                      <p>No teacher is associated with this internship.</p>
+                                  @endif
+                              </div>
+                  @endif
+              </div>
                     <div class="col-lg-5">
                         <div class="position-relative h-100">
                             <img class="w-100 h-100 rounded wow zoomIn img-fluid" data-wow-delay="0.9s" src="{{ asset('img/latestNews.jpg') }}" style="object-fit: cover;">

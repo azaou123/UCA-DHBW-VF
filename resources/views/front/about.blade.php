@@ -24,18 +24,27 @@
                 </div>
             </div>
         </div>
+        <div id="sectionNotification" class="notification7 show">
+            <div>Quick Navigation</div>
+        <div id="toggleNotificationArrow" onclick="toggleNotification()">
+            <i class="fa-solid fa-circle-arrow-left" style="color: #800000; font-size: 28px;"></i>
+        </div>
+        <ul>
+        <li><div onclick="scrollToSection('about_collaboration')">ABOUT COLLABORATION</div></li>
+        <li><div onclick="scrollToSection('team_members')">TEAM MEMBERS</div></li>
+        </ul>
     </div>
 
     <!-- Full Screen Search section -->
     @include('front.partials.screen_search')
 
     <!-- About Section -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="about_collaboration">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
+                        <h5 class="fw-bold text-primary text-uppercase">About Collaboration</h5>
                         <h1 class="mb-0">Our Collaborative Journey:<br>Cadi Ayyad University & DHBW</h1>
                     </div>
                     <p class="mb-4">{{ $settings['about_collaboration_description'] }}</p>
@@ -53,7 +62,7 @@
 
 
     <!-- Team Section -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="team_members">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
@@ -152,6 +161,8 @@
 
     <!-- Include Scripts -->
     @include('front.partials.scripts')
+    <!-- Quick Navigation Script-->
+    @include('front.partials.navigation_script')
 </body>
 
 </html>

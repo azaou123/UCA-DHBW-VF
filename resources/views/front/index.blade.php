@@ -23,7 +23,6 @@
         <li><div onclick="scrollToSection('international_cooperation')">UCA & DHBW</div></li>
         <li><div onclick="scrollToSection('success_story')">SUCCESS STORY</div></li>
         <li><div onclick="scrollToSection('testimonial')">TESTIMONIAL</div></li>
-        <li><div onclick="scrollToSection('latest_news')">LATEST NEWS</div></li>
         </ul>
     </div>
         
@@ -233,53 +232,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Latest News Section -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="latest_news">
-        <div class="container py-5">
-            <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
-                <h5 class="fw-bold text-primary text-uppercase" >Latest News</h5>
-                <h1 class="mb-0">Explore Insights and Collaborative Endeavors</h1>
-            </div>
-            <div class="row g-5">
-                @foreach($latestRecords as $item)
-                <div class="col-lg-4 wow slideInUp" data-wow-delay="0.3s" id="{{$item->slug}}">
-                    <div class="blog-item bg-light rounded overflow-hidden">
-                        <div class="blog-img position-relative overflow-hidden">
-                            <img class="img-fluid" src="{{asset('img/internships.jpg')}}" alt="">
-                             @if($item instanceof \App\Models\Workshop)
-                            <span class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">Workshops</span>
-                            @elseif($item instanceof \App\Models\Project)
-                            <span class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">Research Projects</span>
-                            @elseif($item instanceof \App\Models\Internship)
-                            <span class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">Internships</span>
-                            @elseif($item instanceof \App\Models\Program)
-                            <span class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">Programs</span>
-                            @elseif($item instanceof \App\Models\Fablab)
-                            <span class="position-absolute top-0 start-0 bg-primary text-white rounded-end mt-5 py-2 px-4">Achievements</span>
-                        @endif
-                        </div>
-                        <div class="p-4">
-                            <div class="d-flex mb-3">
-                                <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $item->updated_at->format('d M, Y') }}</small>
-                            </div>
-                              <h4 class="mb-3">
-                       
-                        {{ $item->title }}
-                    </h4>
-                            <p>{{ Str::limit($item->description, 100, '...') }}</p>
-                            <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $item->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
-
-                        </div>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
-       
-    
+    </div>  
     <!-- Footer Section -->
     @include('front.partials.footer')
     

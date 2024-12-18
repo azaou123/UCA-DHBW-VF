@@ -67,7 +67,8 @@ Route::get('/faculty_staff_exchange', [TeacherController::class, 'filterTeachers
 Route::get('/workshop', [WorkshopController::class, 'filterWorkshop'])->name('workshops');
 
 //News Controller : Front Office
-Route::get('/news', [NewsController::class, 'displayNews'])->name('front.news.news');
+// In routes/web.php
+Route::get('/news', [NewsController::class, 'showFiltredNews'])->name('front.news.news');
 Route::get('/', [NewsController::class, 'index'])->name('front.index');
 Route::get('/news/{slug}', [NewsController::class, 'showNews'])->name('front.news.showNews');
 

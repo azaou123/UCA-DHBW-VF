@@ -13,6 +13,8 @@
             var notification = document.getElementById('sectionNotification');
             notification.classList.toggle('show');
         }
+
+
     
     function navigateToPage(pageUrl) {
     window.location.href = pageUrl;
@@ -23,4 +25,4 @@
             var toggleNotificationArrow = document.getElementById('toggleNotificationArrow');
             toggleNotificationArrow.style.display = 'block';
         });
-    </script>
+</script>
