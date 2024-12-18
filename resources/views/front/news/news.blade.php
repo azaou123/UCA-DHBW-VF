@@ -5,10 +5,50 @@
 @include('front.partials.head')
 
 <body>
+
+<script>
+    function toggleNotification() {
+        var notification = document.getElementById('sectionNotification');
+        var arrowIcon = notification.querySelector('.fa-solid');
+        
+        // Ajoute ou supprime la classe 'show'
+        notification.classList.toggle('show');
+        
+        // Change la direction de la flèche
+        if (notification.classList.contains('show')) {
+            arrowIcon.classList.remove('fa-circle-arrow-left');
+            arrowIcon.classList.add('fa-circle-arrow-right');
+        } else {
+            arrowIcon.classList.remove('fa-circle-arrow-right');
+            arrowIcon.classList.add('fa-circle-arrow-left');
+        }
+    }
+
+    function scrollToSection(sectionId) {
+        var element = document.getElementById(sectionId);
+        if (element) {
+            window.scrollTo({
+                top: element.offsetTop + 300,
+                behavior: "smooth"
+            });
+        }
+    }
+
+
+
+</script>
+
+
+
+
+
+
     <!-- Loading spinner -->
     <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner"></div>
     </div>
+
+
 
     <!-- Navbar section -->
     <div class="container-fluid position-relative p-0">
@@ -26,35 +66,64 @@
         </div>
     </div>
 
+
+    
+
+    
+
     <!-- Full Screen Search section -->
     @include('front.partials.screen_search')
+
+            <!-- Navbar section -->
+            <div class="container-fluid position-relative p-0">
+       
+    <div id="sectionNotification" class="notification1 show">
+            <div>Quick Navigation</div>
+        <div id="toggleNotificationArrow" onclick="toggleNotification()">
+            <i class="fa-solid fa-circle-arrow-left" style="color: #800000; font-size: 28px;"></i>
+        </div>
+        <ul>
+        <li><div onclick="scrollToSection('news')">NEWS</div></li>
+        </ul>
+    </div>
+
+
+
+
+
 
     <!-- News Section -->
     <div id="results-container" class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <!-- News section title -->
-                <h1 class="mb-0">News</h1>
+                <h1 class="mb-0" id="news">News</h1>
             </div>
-           
-            <div class="row g-5">
-                <div class="col-lg-4">
-            <div class="mb-5 wow slideInUp" data-wow-delay="0.1s">
-                        <div class="section-title section-title-sm position-relative pb-3 mb-4">
-                            <h3 class="mb-0">Categories</h3>
-                        </div>
-                        <div class="link-animated d-flex flex-column justify-content-start">
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#workshop_news"><i class="bi bi-arrow-right me-2"></i>Workshops</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#internship_news"><i class="bi bi-arrow-right me-2"></i>Internships</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#program_news"><i class="bi bi-arrow-right me-2"></i>Programs</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#fablab_news"><i class="bi bi-arrow-right me-2"></i>Achievements</a>
-                            <a class="h5 fw-semi-bold bg-light rounded py-2 px-3 mb-2" href="#project_news"><i class="bi bi-arrow-right me-2"></i>Research Projects</a>
-                        </div>
-                    </div>
-            </div>
+            <div class="container py-5 mb-5" id="refine_search">
+            <div class="col-lg-7">
+              <h5 class="fw-bold text-primary text-uppercase">Refine your Search</h5>
+              <div class="box">
+                  <!-- Filter Form -->
+                  <form id="filter-form" method="GET" class="d-flex">
+                    <select name="category" class="form-select me-2">
+                        <option disabled selected>Category</option>
+                        <!-- Categories -->
+                        <option value="workshops" {{ request('category') == 'workshops' ? 'selected' : '' }}>Workshops</option>
+                        <option value="internships" {{ request('category') == 'internships' ? 'selected' : '' }}>Internships</option>
+                        <option value="programs" {{ request('category') == 'programs' ? 'selected' : '' }}>Programs</option>
+                        <option value="fablabs" {{ request('category') == 'fablabs' ? 'selected' : '' }}>Achievements</option>
+                        <option value="projects" {{ request('category') == 'projects' ? 'selected' : '' }}>Research Projects</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Apply Filters</button>
+                </form>
+              </div>
+          </div>
+
+        </div>
+            <div class="row g-5 mb-5">
                 <div class="col-lg-8">
                     <div class="row g-5" id="workshop_news">
-                @foreach($latestWorkshops as $workshop)
+                @foreach($workshops as $workshop)
                     
                 <div class="col-md-6 wow slideInUp" >
                     <div class="blog-item bg-light rounded overflow-hidden">
@@ -79,8 +148,8 @@
                  
             </div>
             
-            <div class="row g-5" id="internship_news">
-                @foreach($latestInternships as $internship)
+            <div class="row g-5 mb-5" id="internship_news">
+                @foreach($internships as $internship)
                 <div class="col-lg-4 wow slideInUp">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
@@ -92,7 +161,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $internship->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $internship->title }}</h4>
-                            <p>{{ Str::limit($internship->description, 100, '...') }}</p>
                             <!-- Read more link -->
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $internship->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
@@ -102,8 +170,8 @@
                
             </div>
             
-            <div class="row g-5" id="program_news">
-                @foreach($latestPrograms as $program)
+            <div class="row g-5 mb-5" id="program_news">
+                @foreach($programs as $program)
                 <div class="col-lg-4 wow slideInUp">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
@@ -125,8 +193,8 @@
                
             </div>
             
-            <div class="row g-5" id="fablab_news">
-                @foreach($latestFablabs as $fablab)
+            <div class="row g-5 mb-5" id="fablab_news">
+                @foreach($fablabs as $fablab)
                 <div class="col-lg-4 wow slideInUp">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">
@@ -148,8 +216,8 @@
                
             </div>
             
-            <div class="row g-5" id="project_news">
-                @foreach($latestProjects as $project)
+            <div class="row g-5 mb-5" id="project_news">
+                @foreach($projects as $project)
                 <div class="col-lg-4 wow slideInUp">
                     <div class="blog-item bg-light rounded overflow-hidden">
                         <div class="blog-img position-relative overflow-hidden">

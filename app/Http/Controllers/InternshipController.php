@@ -18,6 +18,37 @@ class InternshipController extends Controller
         $teachers = Teacher::all();
         return view('back.internship_details', compact('internship','internships','partners','students','teachers'));
     }
+    public function show($id)
+    {
+        // Récupérer les détails du stage avec ses relations
+        $news = Internship::with(['students', 'teachers'])->find($id);
+    
+        // Vérifiez si $news est nul pour éviter une erreur
+        if (!$news) {
+            return abort(404, 'Stage introuvable.');
+        }
+    
+        // Transmettre les variables à la vue
+        return view('front.news.show', [
+            'news' => $news,
+            'students' => $news->students,
+            'teachers' => $news->teachers,
+        ]);
+    }
+    
+
+    public function showNews($slug)
+    {
+        $news = Internship::where('slug', $slug)->first();
+    
+        // Récupérer les étudiants associés à ce stage
+        $students = $news->students; // Assurez-vous que la relation est définie dans le modèle Internship
+        
+        // Récupérer les enseignants associés à ce stage
+        $teachers = $news->teachers; // Assurez-vous que la relation est définie dans le modèle Internship
+    
+        return view('front.news.showNews', compact('news', 'students', 'teachers'));
+    }
     public function affectStudents(Request $request, $internshipId)
 {
     // Validate the request data
@@ -88,6 +119,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'date_end' => 'required|date',
             'company' => 'required|string|max:255',
             'partner_id' => 'nullable|exists:partners,id',
+            'type' => 'required|in:on-site,online', // Validation pour 'type'
+
         ]);
 
         Internship::create([
@@ -98,6 +131,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'date_end' => $request->input('date_end'),
             'company' => $request->input('company'),
             'partner_id' => $request->input('partner_id'),
+            'type' => $request->input('type'), // Ajout du champ
+
         ]);
 
         return redirect()->back()->with('success', 'Internship added successfully');
@@ -119,6 +154,8 @@ public function removeSupervisor($internshipId, $supervisorId)
             'date_end' => 'required|date',
             'company' => 'required|string|max:255',
             'partner_id' => 'nullable|exists:partners,id',
+            'type' => 'required|in:on-site,online', // Validation pour 'type'
+
         ]);
 
         $internship->update([
@@ -129,39 +166,54 @@ public function removeSupervisor($internshipId, $supervisorId)
             'date_end' => $request->input('date_end'),
             'company' => $request->input('company'),
             'partner_id' => $request->input('partner_id'),
+            'type' => $request->input('type'), // Mise à jour du champ
+
         ]);
 
         return redirect()->back()->with('success', 'Internship updated successfully');
     }
     public function filterInternships(Request $request)
     {
-        // Get all workshops
+        // Get all internships
         $internships = Internship::all();
-
+    
         // Get unique years from both date_start and date_end columns
         $yearsStart = Internship::selectRaw('YEAR(date_start) as year')->distinct()->pluck('year');
         $yearsEnd = Internship::selectRaw('YEAR(date_end) as year')->distinct()->pluck('year');
-
+    
         // Merge and sort the unique years
         $years = $yearsStart->merge($yearsEnd)->unique()->sort();
-
-        // If the year parameter is provided, filter workshops
-        $filteredInternships = null;
+    
+        // Get filter inputs
         $year = $request->input('year');
+        $type = $request->input('type'); // Nouveau paramètre de filtre par type
+    
+        // Créer une requête filtrée
+        $query = Internship::query();
+    
+        // Appliquer le filtre par année
         if ($year) {
-            $filteredInternships = Internship::whereYear('date_start', $year)
-                ->orWhereYear('date_end', $year)
-                ->paginate(3);
+            $query->whereYear('date_start', $year)
+                  ->orWhereYear('date_end', $year);
         }
-
-        // Return a JSON response for AJAX requests
+    
+        // Appliquer le filtre par type
+        if ($type) {
+            $query->where('type', $type); // 'type' est la colonne de la base de données (valeurs : 'online', 'on_site')
+        }
+    
+        // Récupérer les résultats paginés
+        $filteredInternships = $query->paginate(3);
+    
+        // Retourner une réponse JSON pour les requêtes AJAX
         if ($request->ajax()) {
-            $html = view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year'))->render();
+            $html = view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year', 'type'))->render();
             return response()->json(['html' => $html]);
         }
-
-        // Pass data to the view
-        return view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year'));
+    
+        // Retourner la vue avec les données
+        return view('front.internships.home_internships', compact('internships', 'years', 'filteredInternships', 'year', 'type'));
     }
+    
 
 }

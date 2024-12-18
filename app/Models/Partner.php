@@ -18,4 +18,10 @@ class Partner extends Model
         'fax',
         'logo',
     ];
+
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_partner', 'partner_id', 'project_id');
+    }
 }

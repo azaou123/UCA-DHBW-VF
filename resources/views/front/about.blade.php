@@ -17,28 +17,37 @@
         <div class="container-fluid bg-primary py-5 bg-header" style="margin-bottom: 90px;">
             <div class="row py-5">
                 <div class="col-12 pt-lg-5 mt-lg-5 text-center">
-                    <h1 class="display-4 text-white animated zoomIn">About Us</h1>
+                    <h1 class="display-4 text-white animated zoomIn">About Collaboration</h1>
                     <a href="/" class="h5 text-white">Home</a>
                     <i class="far fa-circle text-white px-2"></i>
-                    <a href="/about" class="h5 text-white">About Us</a>
+                    <a href="/about" class="h5 text-white">About Collaboration</a>
                 </div>
             </div>
         </div>
+        <div id="sectionNotification" class="notification7 show">
+            <div>Quick Navigation</div>
+        <div id="toggleNotificationArrow" onclick="toggleNotification()">
+            <i class="fa-solid fa-circle-arrow-left" style="color: #800000; font-size: 28px;"></i>
+        </div>
+        <ul>
+        <li><div onclick="scrollToSection('about_collaboration')">ABOUT COLLABORATION</div></li>
+        <li><div onclick="scrollToSection('team_members')">TEAM MEMBERS</div></li>
+        </ul>
     </div>
 
     <!-- Full Screen Search section -->
     @include('front.partials.screen_search')
 
     <!-- About Section -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="about_collaboration">
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-7">
                     <div class="section-title position-relative pb-3 mb-5">
-                        <h5 class="fw-bold text-primary text-uppercase">About Us</h5>
+                        <h5 class="fw-bold text-primary text-uppercase">About Collaboration</h5>
                         <h1 class="mb-0">Our Collaborative Journey:<br>Cadi Ayyad University & DHBW</h1>
                     </div>
-                    <p class="mb-4">Welcome to Cadi Ayyad University (UCA), in collaboration with Baden-Württemberg Cooperative State University (DHBW). This synergistic partnership exemplifies our commitment to innovation, academic excellence, and global collaboration. Developed by the talented students of Cadi Ayyad University, this website is a testament to our dedication to experiential learning and cross-cultural collaboration. With a rich tapestry of international partnerships, including DHBW, we aim to be a catalyst for positive change, nurturing talents, and shaping the future of education. Join us in exploring our journey, values, and the collective pursuit of knowledge that defines who we are. Together, with DHBW, we make a lasting impact on a global scale.</p>
+                    <p class="mb-4">{{ $settings['about_collaboration_description'] }}</p>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
                     <div class="position-relative h-100">
@@ -49,8 +58,11 @@
         </div>
     </div>
 
+
+
+
     <!-- Team Section -->
-    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s" id="team_members">
         <div class="container py-5">
             <div class="section-title text-center position-relative pb-3 mb-5 mx-auto" style="max-width: 600px;">
                 <h5 class="fw-bold text-primary text-uppercase">Team Members</h5>
@@ -149,6 +161,8 @@
 
     <!-- Include Scripts -->
     @include('front.partials.scripts')
+    <!-- Quick Navigation Script-->
+    @include('front.partials.navigation_script')
 </body>
 
 </html>
