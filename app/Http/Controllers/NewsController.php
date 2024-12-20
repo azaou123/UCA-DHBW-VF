@@ -96,38 +96,46 @@ class NewsController extends Controller
 public function showFiltredNews(Request $request)
 {
     $category = $request->get('category');
-
+    
     $workshops = [];
     $internships = [];
     $programs = [];
     $fablabs = [];
     $projects = [];
+    
+
+    $latestWorkshops = Workshop::orderBy('updated_at', 'desc')->take(2)->get();
+    $latestPrograms = Program::orderBy('updated_at', 'desc')->take(3)->get();
+    $latestFablabs = Fablab::orderBy('updated_at', 'desc')->take(3)->get();
+    $latestProjects = Project::orderBy('updated_at', 'desc')->take(3)->get();
+    $latestInternships = Internship::orderBy('updated_at', 'desc')->take(3)->get();
 
     if ($category) {
         switch ($category) {
             case 'workshops':
-                $workshops = Workshop::all();
+                $workshops = Workshop::orderBy('updated_at', 'desc')->get();
                 break;
             case 'internships':
-                $internships = Internship::all();
+                $internships = Internship::orderBy('updated_at', 'desc')->get();
                 break;
             case 'programs':
-                $programs = Program::all();
+                $programs = Program::orderBy('updated_at', 'desc')->get();
                 break;
             case 'fablabs':
-              $fablabs = Fablab::all();
-              break;
+                $fablabs = Fablab::orderBy('updated_at', 'desc')->get();
+                break;
             case 'projects':
-              $projects = Project::all();
-              break;
+                $projects = Project::orderBy('updated_at', 'desc')->get();
+                break;
             default:
-              break;
+                break;
         }
     }
 
-    // Return the view with the filtered results
-    return view('front.news.news', compact('workshops', 'internships', 'programs', 'fablabs', 'projects'));
+    return view('front.news.news', compact(
+        'workshops', 'internships', 'programs', 'fablabs', 'projects',
+        'latestWorkshops', 'latestPrograms', 'latestFablabs', 'latestProjects', 'latestInternships'
+    ));
 }
-
 
 }
