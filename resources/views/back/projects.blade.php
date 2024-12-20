@@ -310,8 +310,26 @@
                         <tr id="{{ $project->id }}">
                             <td>{{ $project->id }}</td>
                             <td>{{ $project->title }}</td>
-                            <td>{{ $project->description }}</td>
-                            <td>{{ $project->objective }}</td>
+                            <!-- <td>{{ $project->description }}</td> -->
+                            <td>
+                                <div class="description-short">
+                                    {{ Str::limit($project->description, 30) }} <!-- Résumé initial (30 caractères) -->
+                                </div>
+                                <div class="description-full" style="display: none;">
+                                    {{ $project->description }} <!-- Description complète -->
+                                </div>
+                                <a href="#" class="show-more">...</a> <!-- Lien pour afficher le reste -->
+                            </td>
+                            <!-- <td>{{ $project->objective }}</td> -->
+                            <td>
+                                <div class="description-short">
+                                    {{ Str::limit($project->objective, 30) }} <!-- Résumé initial (30 caractères) -->
+                                </div>
+                                <div class="description-full" style="display: none;">
+                                    {{ $project->objective }} <!-- Description complète -->
+                                </div>
+                                <a href="#" class="show-more">...</a> <!-- Lien pour afficher le reste -->
+                            </td>
                             <td>{{ $project->duration_in_months }}
                                 {{ $project->duration_in_months > 1 ? 'months' : 'month' }}
                             </td>
@@ -675,6 +693,31 @@
                 item.style.display = label.includes(filter) ? '' : 'none';
             });
         }
+    </script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script>
+        $(document).ready(function() {
+            // Lorsque l'utilisateur clique sur "..."
+            $('.show-more').click(function(e) {
+                e.preventDefault(); // Empêche le comportement par défaut du lien
+
+                // Récupère les éléments parents
+                var $short = $(this).siblings('.description-short');
+                var $full = $(this).siblings('.description-full');
+
+                // Bascule entre le résumé et la description complète
+                if ($full.is(':visible')) {
+                    $full.hide();
+                    $short.show();
+                    $(this).text('...'); // Réaffiche les points de suspension
+                } else {
+                    $short.hide();
+                    $full.show();
+                    $(this).text('Réduire'); // Change le texte pour "Réduire"
+                }
+            });
+        });
     </script>
 
 </body>
