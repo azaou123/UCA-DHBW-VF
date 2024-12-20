@@ -87,7 +87,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $workshop->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $workshop->title }}</h4>
-                            <p>{{ Str::limit($workshop->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $workshop->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -108,7 +107,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $internship->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $internship->title }}</h4>
-                            <p>{{ Str::limit($internship->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $internship->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -129,7 +127,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $program->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $program->title }}</h4>
-                            <p>{{ Str::limit($program->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $program->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -150,7 +147,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $fablab->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $fablab->title }}</h4>
-                            <p>{{ Str::limit($fablab->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $fablab->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -171,7 +167,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $project->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $project->title }}</h4>
-                            <p>{{ Str::limit($project->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $project->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -218,7 +213,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $workshop->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $workshop->title }}</h4>
-                            <p>{{ Str::limit($workshop->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $workshop->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -241,7 +235,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $internship->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $internship->title }}</h4>
-                            <p>{{ Str::limit($internship->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $internship->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -264,7 +257,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $program->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $program->title }}</h4>
-                            <p>{{ Str::limit($program->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $program->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -287,7 +279,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $fablab->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $fablab->title }}</h4>
-                            <p>{{ Str::limit($fablab->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $fablab->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
@@ -310,7 +301,6 @@
                                 <small><i class="far fa-calendar-alt text-primary me-2"></i>{{ $project->updated_at->format('d M, Y') }}</small>
                             </div>
                             <h4 class="mb-3">{{ $project->title }}</h4>
-                            <p>{{ Str::limit($project->description, 100, '...') }}</p>
                             <a class="text-uppercase" href="{{ route('front.news.showNews', ['slug' => $project->slug]) }}">Read More <i class="bi bi-arrow-right"></i></a>
                         </div>
                     </div>
